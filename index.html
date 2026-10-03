@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Say Coffee Laxmi Nagar | Handcrafted Coffee, Frappes & Kitchen eCommerce</title>
+  
+  <!-- SEO & Social Meta Tags -->
+  <meta name="description" content="Order handcrafted cold brews, Matcha Strawberry fusion, roasted hazelnut frappes, artisanal burgers, and gourmet pizza from Say Coffee Laxmi Nagar. Instant WhatsApp ordering & fast local delivery.">
+  <meta name="keywords" content="Say Coffee Laxmi Nagar, Coffee Delhi, Vietnamese Cold Coffee, Matcha Strawberry, Hazelnut Frappe, Cafe Laxmi Nagar, Burger, Pizza, WhatsApp Order">
+  <meta name="author" content="Say Coffee Laxmi Nagar">
+  <meta name="theme-color" content="#5B2C84">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Say Coffee Laxmi Nagar | Premium Coffee & Kitchen">
+  <meta property="og:description" content="Discover vibrant brews and delicious cafe bites in Laxmi Nagar. Order directly via WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero-matcha.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235B2C84'><path d='M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z'/></svg>">
+
+  <!-- Google Fonts: Outfit (Sans) + Playfair Display (Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. STICKY ECOMMERCE NAVBAR (Inspired by Image 13 & User Spec)
+       ======================================================================== -->
+  <nav class="site-navbar" id="site-navbar" aria-label="Main Navigation">
+    <div class="app-container">
+      <div class="navbar-inner">
+
+        <!-- Left Brand Logo -->
+        <a href="#hero-section" class="nav-brand-group" id="nav-brand-link">
+          <div class="brand-emblem" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+            </svg>
+          </div>
+          <div class="nav-center-title">
+            <span class="brand-title-main">SAY COFFEE</span>
+            <span class="brand-location-tag">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Laxmi Nagar
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="nav-links" id="desktop-nav-links">
+          <a href="#menu-section" class="nav-link-item active">Our Menu</a>
+          <a href="#specialties" class="nav-link-item">Specialties</a>
+          <a href="#faq-section" class="nav-link-item">FAQ</a>
+          <a href="#contact-section" class="nav-link-item">Visit Us</a>
+        </div>
+
+        <!-- Right Side Quick Actions & Dynamic Cart Button -->
+        <div class="nav-actions">
+          <a href="tel:9990940010" class="phone-quick-btn" title="Call Say Coffee Laxmi Nagar">
+            <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>9990940010</span>
+          </a>
+
+          <!-- Dynamic Cart Drawer Trigger Button with Badge -->
+          <button 
+            class="cart-trigger-btn" 
+            id="cart-trigger-btn" 
+            onclick="openCartDrawer()" 
+            aria-label="View Cart Drawer"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z"/>
+            </svg>
+            <span>Cart</span>
+            <span class="cart-counter-badge" id="navbar-cart-badge" style="display:none">0</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       2. IMMERSIVE HERO CAROUSEL (Responsive Starbucks App-Style from Image 13)
+       ======================================================================== -->
+  <header class="app-container hero-wrapper" id="hero-section">
+    <div class="hero-card" id="hero-card">
+      <!-- Dynamic Ambient Glow Shift -->
+      <div class="hero-glow-layer" id="hero-glow-layer"></div>
+
+      <!-- Slide Showcase Area -->
+      <div class="hero-carousel-container">
+        
+        <div class="hero-slide active" id="hero-slide-view">
+          
+          <!-- Left Column: Typography & Conversion CTA -->
+          <div class="hero-info-col">
+            <span class="hero-badge-pill" id="hero-badge">Summer Specialty • Laxmi Nagar</span>
+
+            <!-- Main Heading H1 for SEO & Visual Impact -->
+            <h1 class="hero-heading-main" id="hero-title-main">MATCHA</h1>
+            <h2 class="hero-heading-sub" id="hero-title-sub">Strawberry</h2>
+
+            <div class="hero-divider-line" id="hero-divider"></div>
+
+            <div class="hero-price-row">
+              <span class="hero-price-tag" id="hero-price">₹164</span>
+              <span class="hero-price-note">Laxmi Nagar Exclusive</span>
+            </div>
+
+            <p class="hero-description" id="hero-desc">
+              Sweet, earthy, vibrant flavor burst.
+            </p>
+
+            <div class="hero-cta-group">
+              <!-- Add to Order Button (Direct Cart integration & Drawer trigger) -->
+              <button 
+                class="hero-add-btn" 
+                id="hero-add-order-btn" 
+                onclick="handleHeroAdd()"
+              >
+                <span>Add to Order</span>
+                <svg style="width:18px;height:18px;fill:currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+              </button>
+
+              <button 
+                class="hero-customize-link" 
+                id="hero-customize-btn" 
+                onclick="handleHeroCustomize()"
+              >
+                Customize Drink & Add
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Centered Cup Showcase with Morphing Blob -->
+          <div class="hero-media-col">
+            <div class="hero-backdrop-blob" id="hero-blob"></div>
+            <div class="hero-cup-frame">
+              <img 
+                id="hero-cup-img" 
+                src="assets/hero-matcha.jpg" 
+                alt="Say Coffee Signature Drink" 
+                class="hero-cup-img"
+              >
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Carousel Navigation Arrows & Dots (Image 13 layout) -->
+      <div class="hero-carousel-nav">
+        <button class="hero-arrow-btn" onclick="prevHeroSlide()" aria-label="Previous Slide">
+          <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+
+        <div class="hero-dots-group" id="hero-dots">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <button class="hero-arrow-btn" onclick="nextHeroSlide()" aria-label="Next Slide">
+          <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       3. VALUES & ASSURANCE STRIP (Conversion Optimization)
+       ======================================================================== -->
+  <section class="app-container" id="specialties" aria-label="Brand Highlights">
+    <div class="values-strip">
+      
+      <div class="value-pill">
+        <div class="value-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+        </div>
+        <div class="value-content">
+          <h4>Artisan Roasted</h4>
+          <p>Single origin 100% Arabica</p>
+        </div>
+      </div>
+
+      <div class="value-pill">
+        <div class="value-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <div class="value-content">
+          <h4>Fresh Ingredients</h4>
+          <p>Handcrafted to order daily</p>
+        </div>
+      </div>
+
+      <div class="value-pill">
+        <div class="value-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+        </div>
+        <div class="value-content">
+          <h4>Superfast Prep</h4>
+          <p>Fresh in 8–12 minutes</p>
+        </div>
+      </div>
+
+      <div class="value-pill">
+        <div class="value-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.46-.98.88-1.48.91-.45.03-.98.07-2.92-.7-2.34-.92-3.83-3.23-3.95-3.39-.11-.15-.96-1.27-.96-2.42 0-1.15.6-1.72.82-1.95.21-.24.46-.3.62-.3.15 0 .31.01.44.02.14.01.33-.05.52.4.2.48.68 1.66.74 1.78.06.12.1.26.02.42-.08.15-.12.25-.24.39-.12.15-.26.33-.37.45-.12.12-.24.25-.1.5.14.24.62 1.02 1.33 1.65.91.81 1.68 1.06 1.92 1.18.24.12.38.1.52-.06.14-.17.6-.7.76-.94.16-.24.32-.2.54-.12l1.64.81zM12 2C6.48 2 2 6.48 2 12c0 1.94.55 3.75 1.51 5.28L2 22l4.89-1.47C8.38 21.47 10.13 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        </div>
+        <div class="value-content">
+          <h4>WhatsApp Direct</h4>
+          <p>Instant ticket confirmation</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. INTERACTIVE MENU GRID (Layout structure like Image 12)
+       ======================================================================== -->
+  <main class="app-container menu-section" id="menu-section">
+    
+    <!-- Menu Section Header & Controls -->
+    <div class="menu-header-bar">
+      <div class="menu-title-wrap">
+        <h2>Menu <span>drinks & food</span></h2>
+        <p>Freshly brewed, layered with passion, and paired with gourmet cafe favorites.</p>
+      </div>
+
+      <div class="menu-controls-wrap">
+        <!-- Live Search Bar -->
+        <div class="search-input-box">
+          <svg class="search-icon-svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input 
+            type="text" 
+            id="menu-search-input" 
+            placeholder="Search coffee, burger, fries..." 
+            oninput="handleSearch(this.value)"
+            aria-label="Search Menu"
+          >
+        </div>
+
+        <!-- Dietary Toggle Button (Veg / Non-Veg / All) -->
+        <button 
+          class="dietary-toggle-btn" 
+          id="dietary-filter-btn" 
+          onclick="toggleDietaryFilter()"
+          title="Filter by Vegetarian or Non-Vegetarian"
+        >
+          <span>◒</span> All Diets
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Filter Navigation (Horizontal Pills like Image 12) -->
+    <div class="category-filter-bar no-scrollbar" id="category-filter-bar" role="tablist">
+      <!-- Rendered via JavaScript -->
+    </div>
+
+    <!-- The Menu Grid (All Item Cards Completely Clickable) -->
+    <div class="menu-grid" id="menu-grid">
+      <!-- Injected dynamically via JavaScript -->
+    </div>
+
+  </main>
+
+  <!-- ========================================================================
+       5. ITEM CUSTOMIZATION MODAL (Critical Conversion Feature)
+       ======================================================================== -->
+  <div 
+    class="modal-backdrop" 
+    id="customization-modal" 
+    onclick="if(event.target === this) closeModal()" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modal-item-title"
+  >
+    <div class="modal-panel">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-title-meta">
+          <h3 id="modal-item-title">Item Name</h3>
+          <p id="modal-item-desc">Item Description</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal()" aria-label="Close Customization Modal">
+          <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </div>
+
+      <!-- Modal Options Body (Dynamic based on Category) -->
+      <div class="modal-body-content" id="modal-dynamic-options">
+        <!-- Rendered via JavaScript -->
+      </div>
+
+      <!-- Modal Footer with Specific Confirm Button -->
+      <div class="modal-footer">
+        
+        <!-- Quantity Selector inside modal -->
+        <div class="modal-qty-selector">
+          <button class="modal-qty-btn" onclick="changeModalQty(-1)" aria-label="Decrease Quantity">-</button>
+          <span class="modal-qty-val" id="modal-qty-num">1</span>
+          <button class="modal-qty-btn" onclick="changeModalQty(1)" aria-label="Increase Quantity">+</button>
+        </div>
+
+        <!-- Specific Confirm Button: "Confirm & Add ₹X (showing calculated price after selection)" -->
+        <button 
+          class="modal-confirm-btn" 
+          id="modal-confirm-btn" 
+          onclick="confirmModalAdd()"
+        >
+          <span>Confirm & Add ₹164</span>
+          <svg style="width:18px;height:18px;fill:currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       6. SLIDE-OVER CART DRAWER (Full-Height Right Offcanvas)
+       ======================================================================== -->
+  <div 
+    class="cart-drawer-overlay" 
+    id="cart-drawer-overlay" 
+    onclick="closeCartDrawer()" 
+    aria-hidden="true"
+  ></div>
+
+  <aside class="cart-drawer-panel" id="cart-drawer-panel" aria-label="Your Basket">
+    
+    <!-- Drawer Header -->
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title-box">
+        <svg style="width:24px;height:24px;fill:var(--brand-purple)" viewBox="0 0 24 24">
+          <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12z"/>
+        </svg>
+        <h3>Your Cafe Basket</h3>
+      </div>
+      <button class="modal-close-btn" onclick="closeCartDrawer()" aria-label="Close Cart Drawer">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      </button>
+    </div>
+
+    <!-- Items List -->
+    <div class="cart-drawer-items-list" id="cart-items-container">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- Customer Ordering Details Fields -->
+    <div class="cart-drawer-customer-fields">
+      <span class="cart-field-label">Delivery / Dining Method</span>
+      <div class="dining-options-row">
+        <button type="button" class="dining-pill-btn active" onclick="setDiningType('Home Delivery (Laxmi Nagar)', this)">🛵 Delivery</button>
+        <button type="button" class="dining-pill-btn" onclick="setDiningType('Store Takeaway', this)">🛍️ Takeaway</button>
+        <button type="button" class="dining-pill-btn" onclick="setDiningType('Cafe Dine-in Table', this)">🍽️ Dine-in</button>
+      </div>
+
+      <input 
+        type="text" 
+        id="cust-name-input" 
+        class="cart-text-input" 
+        placeholder="Your Name (e.g. Rahul Sharma)"
+        aria-label="Customer Name"
+      >
+
+      <input 
+        type="text" 
+        id="cust-address-input" 
+        class="cart-text-input" 
+        placeholder="Laxmi Nagar Address / Table No. / Note"
+        aria-label="Address or Table Number"
+      >
+    </div>
+
+    <!-- Drawer Footer & Massive Emerald Green WhatsApp Checkout Button -->
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal-row">
+        <span>Cart Subtotal</span>
+        <span id="cart-subtotal-val">₹0</span>
+      </div>
+      <div class="cart-subtotal-row" style="font-size:0.78rem;color:var(--color-text-subtle);margin-bottom:0.75rem">
+        <span>Store Pickup / Laxmi Nagar</span>
+        <span>Free / Fast Prep</span>
+      </div>
+
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total Payable</span>
+        <span class="cart-total-amount" id="cart-total-val">₹0</span>
+      </div>
+
+      <!-- Massive, emerald green, Proceed to Order via WhatsApp checkout button [cite: 10] -->
+      <button 
+        class="whatsapp-checkout-btn" 
+        id="whatsapp-checkout-btn" 
+        onclick="proceedToWhatsAppCheckout()"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.46-.98.88-1.48.91-.45.03-.98.07-2.92-.7-2.34-.92-3.83-3.23-3.95-3.39-.11-.15-.96-1.27-.96-2.42 0-1.15.6-1.72.82-1.95.21-.24.46-.3.62-.3.15 0 .31.01.44.02.14.01.33-.05.52.4.2.48.68 1.66.74 1.78.06.12.1.26.02.42-.08.15-.12.25-.24.39-.12.15-.26.33-.37.45-.12.12-.24.25-.1.5.14.24.62 1.02 1.33 1.65.91.81 1.68 1.06 1.92 1.18.24.12.38.1.52-.06.14-.17.6-.7.76-.94.16-.24.32-.2.54-.12l1.64.81zM12 2C6.48 2 2 6.48 2 12c0 1.94.55 3.75 1.51 5.28L2 22l4.89-1.47C8.38 21.47 10.13 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+        </svg>
+        <span>Proceed to Order via WhatsApp</span>
+      </button>
+
+      <p class="checkout-note-caption">Instantly sends ticket directly to Say Coffee counter</p>
+    </div>
+
+  </aside>
+
+  <!-- ========================================================================
+       7. INTERACTIVE FAQ SECTION (Optimized Accordion Style)
+       ======================================================================== -->
+  <section class="faq-section" id="faq-section" aria-label="Frequently Asked Questions">
+    <div class="app-container">
+      
+      <div class="faq-title-wrap">
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about our handcrafted coffee, food customizers, and direct WhatsApp ordering.</p>
+      </div>
+
+      <div class="faq-accordion-group">
+        
+        <!-- FAQ Item 1 -->
+        <article class="faq-card-item active">
+          <button class="faq-toggle-trigger" onclick="toggleFaqAccordion(this)" aria-expanded="true">
+            <span class="faq-question-text">How does WhatsApp ordering work at Say Coffee Laxmi Nagar?</span>
+            <div class="faq-chevron-icon">
+              <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </div>
+          </button>
+          <div class="faq-answer-collapse">
+            <p>
+              When you customize your coffee and food items on our website, your selections are formatted into a clean digital order ticket with item details, prices, and address notes. Clicking <strong>Proceed to Order via WhatsApp</strong> instantly opens WhatsApp with the order pre-filled to our store desk at <strong>9990940010</strong>. Our barista confirms your order immediately.
+            </p>
+          </div>
+        </article>
+
+        <!-- FAQ Item 2 -->
+        <article class="faq-card-item">
+          <button class="faq-toggle-trigger" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+            <span class="faq-question-text">What are the popular signature beverages?</span>
+            <div class="faq-chevron-icon">
+              <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </div>
+          </button>
+          <div class="faq-answer-collapse">
+            <p>
+              Our top customer favorites are the <strong>Matcha Strawberry Fusion (₹164)</strong> layered with sweet strawberry coulis and ceremonial green tea, the <strong>Roasted Hazelnut Frappe (₹134)</strong> topped with caramel drizzle and toasted nuts, and the <strong>Vietnamese Cold Coffee (₹148)</strong> featuring slow-dripped intense espresso over sweetened condensed milk.
+            </p>
+          </div>
+        </article>
+
+        <!-- FAQ Item 3 -->
+        <article class="faq-card-item">
+          <button class="faq-toggle-trigger" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+            <span class="faq-question-text">Can I customize dairy options, flavors, and sizes?</span>
+            <div class="faq-chevron-icon">
+              <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </div>
+          </button>
+          <div class="faq-answer-collapse">
+            <p>
+              Yes! Every drink and food item has customizer options. For coffee and shakes, you can upgrade to <strong>Large Size (+₹49)</strong>, choose <strong>Barista Oat Milk (+₹45)</strong> or <strong>Almond Milk (+₹45)</strong>, add <strong>Extra Espresso Shots (+₹50)</strong>, or add flavors like Hazelnut, Caramel, and Vanilla (+₹30). For burgers and fries, you can add melted cheese slices (+₹20) or gourmet dips.
+            </p>
+          </div>
+        </article>
+
+        <!-- FAQ Item 4 -->
+        <article class="faq-card-item">
+          <button class="faq-toggle-trigger" onclick="toggleFaqAccordion(this)" aria-expanded="false">
+            <span class="faq-question-text">Do you offer local delivery in and around Laxmi Nagar?</span>
+            <div class="faq-chevron-icon">
+              <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </div>
+          </button>
+          <div class="faq-answer-collapse">
+            <p>
+              Yes, we provide prompt local delivery across Laxmi Nagar, Shakarpur, Nirman Vihar, Preet Vihar, and nearby East Delhi locations. You can also place your order online for quick counter takeaway pickup or cafe table dining.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. CONTACT & LOCALIZED MAP SECTION (Laxmi Nagar Hub)
+       ======================================================================== -->
+  <section class="contact-section" id="contact-section" aria-label="Location and Contact">
+    <div class="app-container">
+      
+      <div class="contact-grid">
+        
+        <!-- Contact Information Panel -->
+        <div class="contact-info-panel">
+          <div>
+            <h2>Visit Say Coffee</h2>
+            <p class="subhead">Located in the vibrant heart of Laxmi Nagar, East Delhi.</p>
+
+            <div class="contact-cards-stack">
+              
+              <!-- Address Item -->
+              <div class="contact-row-item">
+                <div class="contact-icon-bubble">
+                  <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                </div>
+                <div class="contact-row-text">
+                  <h4>Address & Location</h4>
+                  <p>Say Coffee, Ground Floor, Near Laxmi Nagar Metro Station (Gate No. 2), Main Vikas Marg, Laxmi Nagar, New Delhi - 110092</p>
+                </div>
+              </div>
+
+              <!-- Phone & WhatsApp Item -->
+              <div class="contact-row-item">
+                <div class="contact-icon-bubble">
+                  <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                </div>
+                <div class="contact-row-text">
+                  <h4>Phone & Direct Hotline</h4>
+                  <p><a href="tel:9990940010">+91 9990940010</a> (Instant Counter Pickup & Delivery)</p>
+                </div>
+              </div>
+
+              <!-- Hours Item -->
+              <div class="contact-row-item">
+                <div class="contact-icon-bubble">
+                  <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+                </div>
+                <div class="contact-row-text">
+                  <h4>Cafe Operating Hours</h4>
+                  <p>Monday – Sunday: <strong>10:00 AM – 11:00 PM</strong> (Open 365 Days)</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom CTA inside Contact Panel -->
+          <div style="margin-top:1.5rem">
+            <button 
+              class="whatsapp-checkout-btn" 
+              onclick="quickWhatsAppOrder()"
+              style="padding:1rem 1.4rem"
+            >
+              <svg viewBox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.46-.98.88-1.48.91-.45.03-.98.07-2.92-.7-2.34-.92-3.83-3.23-3.95-3.39-.11-.15-.96-1.27-.96-2.42 0-1.15.6-1.72.82-1.95.21-.24.46-.3.62-.3.15 0 .31.01.44.02.14.01.33-.05.52.4.2.48.68 1.66.74 1.78.06.12.1.26.02.42-.08.15-.12.25-.24.39-.12.15-.26.33-.37.45-.12.12-.24.25-.1.5.14.24.62 1.02 1.33 1.65.91.81 1.68 1.06 1.92 1.18.24.12.38.1.52-.06.14-.17.6-.7.76-.94.16-.24.32-.2.54-.12l1.64.81zM12 2C6.48 2 2 6.48 2 12c0 1.94.55 3.75 1.51 5.28L2 22l4.89-1.47C8.38 21.47 10.13 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+              <span>Chat with Barista on WhatsApp</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Localized Interactive Map Visual Placeholder -->
+        <div class="map-visual-card">
+          <div class="map-header-bar">
+            <div class="map-header-title">
+              <svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+              <span>Laxmi Nagar Cafe Location Map</span>
+            </div>
+            <span style="font-size:0.75rem;font-weight:800;color:var(--brand-purple);background:#F3EDF9;padding:0.2rem 0.6rem;border-radius:999px">Metro Blue Line</span>
+          </div>
+
+          <!-- Stylized Custom Vector Map of Laxmi Nagar -->
+          <div class="map-canvas-frame">
+            <svg class="laxmi-nagar-map-svg" viewBox="0 0 600 360" preserveAspectRatio="xMidYMid slice">
+              <!-- Background Map Grids -->
+              <rect width="600" height="360" fill="#EAE6DF"/>
+              
+              <!-- Green Park patches -->
+              <path d="M 40 30 Q 120 20 160 80 T 80 140 Z" fill="#D5E8D4" opacity="0.8"/>
+              <path d="M 460 220 Q 540 200 580 280 T 480 340 Z" fill="#D5E8D4" opacity="0.8"/>
+              
+              <!-- Road Networks (Vikas Marg Corridor) -->
+              <path d="M 0 180 Q 280 180 600 180" stroke="#FFFFFF" stroke-width="24" fill="none"/>
+              <path d="M 0 180 Q 280 180 600 180" stroke="#FFD166" stroke-width="4" stroke-dasharray="10 8" fill="none"/>
+              
+              <!-- Connecting Cross Roads -->
+              <path d="M 180 0 L 180 360" stroke="#FFFFFF" stroke-width="14" fill="none"/>
+              <path d="M 380 0 L 380 360" stroke="#FFFFFF" stroke-width="14" fill="none"/>
+              <path d="M 100 80 L 500 80" stroke="#FFFFFF" stroke-width="8" fill="none"/>
+              <path d="M 100 280 L 500 280" stroke="#FFFFFF" stroke-width="8" fill="none"/>
+
+              <!-- Landmarks -->
+              <rect x="140" y="100" width="80" height="40" rx="6" fill="#D1C4E9" opacity="0.6"/>
+              <text x="180" y="125" font-family="'Outfit', sans-serif" font-size="10" font-weight="700" fill="#3F1D5D" text-anchor="middle">Metro Gate 2</text>
+
+              <rect x="350" y="100" width="90" height="40" rx="6" fill="#FFE082" opacity="0.6"/>
+              <text x="395" y="125" font-family="'Outfit', sans-serif" font-size="10" font-weight="700" fill="#B45309" text-anchor="middle">V3S Mall Area</text>
+
+              <text x="300" y="165" font-family="'Outfit', sans-serif" font-size="11" font-weight="800" fill="#78716C" text-anchor="middle" letter-spacing="2">VIKAS MARG (MAIN ROAD)</text>
+            </svg>
+
+            <!-- Pulsing Pin Marker on Cafe Location -->
+            <div class="map-pin-pulse" onclick="window.open('https://maps.google.com/?q=Laxmi+Nagar+Metro+Station+Delhi', '_blank')">
+              <span class="map-pin-badge">☕ Say Coffee • Laxmi Nagar</span>
+              <div class="pin-marker-circle"></div>
+            </div>
+          </div>
+
+          <div class="map-action-footer">
+            <div>
+              <p style="font-size:0.85rem;font-weight:800;color:var(--color-text-main)">Say Coffee • Laxmi Nagar</p>
+              <p style="font-size:0.75rem;color:var(--color-text-muted)">1 min walk from Laxmi Nagar Metro Station</p>
+            </div>
+            <a 
+              href="https://maps.google.com/?q=Laxmi+Nagar+Metro+Station+Delhi" 
+              target="_blank" 
+              rel="noopener" 
+              class="directions-btn"
+            >
+              <span>Get Directions</span>
+              <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. GLOBAL FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="app-container">
+      
+      <div class="footer-top-grid">
+        
+        <div class="footer-brand-bio">
+          <h3>SAY COFFEE</h3>
+          <p>
+            Delighting your day with velvety cold brews, vibrant Matcha strawberry creations, and chef-crafted cafe favorites in Laxmi Nagar, New Delhi.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-round-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-round-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="#hero-section">Featured Specials</a></li>
+            <li><a href="#menu-section">Full Food & Drinks Menu</a></li>
+            <li><a href="#faq-section">FAQs & Ordering Help</a></li>
+            <li><a href="#contact-section">Store Timings & Map</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Laxmi Nagar Store</h4>
+          <ul class="footer-links-list">
+            <li>Near Laxmi Nagar Metro Station</li>
+            <li>New Delhi, Delhi - 110092</li>
+            <li>Call: <a href="tel:9990940010" style="text-decoration:underline">+91 9990940010</a></li>
+            <li>10:00 AM – 11:00 PM Daily</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; 2026 Say Coffee Laxmi Nagar. All rights reserved. GST calculated at checkout.</span>
+        <span>Crafted with Royal Purple & Warm Cream Design System</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       10. FLOATING STICKY WHATSAPP ORDER BUTTON (Mobile & Desktop Quick-Action)
+       ======================================================================== -->
+  <div class="floating-order-widget" id="floating-widget">
+    <button 
+      class="floating-whatsapp-btn" 
+      onclick="quickWhatsAppOrder()"
+      title="Instant WhatsApp Order"
+    >
+      <svg viewBox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.46-.98.88-1.48.91-.45.03-.98.07-2.92-.7-2.34-.92-3.83-3.23-3.95-3.39-.11-.15-.96-1.27-.96-2.42 0-1.15.6-1.72.82-1.95.21-.24.46-.3.62-.3.15 0 .31.01.44.02.14.01.33-.05.52.4.2.48.68 1.66.74 1.78.06.12.1.26.02.42-.08.15-.12.25-.24.39-.12.15-.26.33-.37.45-.12.12-.24.25-.1.5.14.24.62 1.02 1.33 1.65.91.81 1.68 1.06 1.92 1.18.24.12.38.1.52-.06.14-.17.6-.7.76-.94.16-.24.32-.2.54-.12l1.64.81zM12 2C6.48 2 2 6.48 2 12c0 1.94.55 3.75 1.51 5.28L2 22l4.89-1.47C8.38 21.47 10.13 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+      <span>WhatsApp Order</span>
+    </button>
+  </div>
+
+  <!-- Toast Notification Element -->
+  <div class="toast-notice" id="toast-notice" role="alert">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    <span id="toast-message-text">Item added to cart!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

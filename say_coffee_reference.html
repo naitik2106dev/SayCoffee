@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Say Coffee | Laxmi Nagar - Premium Coffee & Kitchen</title>
+  
+  <!-- Google Fonts: Outfit (Sans) + Playfair Display (Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              purple: '#5B2C84',
+              dark: '#3d1c5a',
+              cream: '#FDFBF7',
+              warm: '#F4ECE1',
+              accent: '#8442be'
+            }
+          },
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* Hide scrollbar for clean horizontal scrolling */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    /* Carousel Animations */
+    .slide-enter {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    .slide-enter-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .img-enter {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    .img-enter-active {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Blob Shape */
+    .blob-shape {
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      animation: morph 8s ease-in-out infinite;
+    }
+    @keyframes morph {
+      0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+      34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+      67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+    }
+  </style>
+</head>
+<body class="bg-brand-cream text-neutral-800 antialiased selection:bg-brand-purple selection:text-white flex flex-col min-h-screen">
+
+  <nav class="sticky top-0 z-40 bg-brand-cream/90 backdrop-blur-md border-b border-brand-warm/60 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center space-x-3 group cursor-pointer">
+        <div class="w-12 h-12 rounded-full bg-brand-purple text-white flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-purple/20 group-hover:scale-105 transition-transform duration-300">
+          <i class="fa-solid fa-mug-hot"></i>
+        </div>
+        <div>
+          <span class="text-2xl font-black text-brand-purple tracking-tight leading-none block">SAY COFFEE</span>
+          <span class="text-[10px] font-bold text-neutral-500 uppercase tracking-widest block mt-0.5">Laxmi Nagar</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-neutral-600">
+        <a href="#menu" class="hover:text-brand-purple transition-colors">Our Menu</a>
+        <a href="#faq" class="hover:text-brand-purple transition-colors">FAQ</a>
+        <a href="#contact" class="hover:text-brand-purple transition-colors">Contact</a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-3">
+        <a href="tel:9990940010" class="hidden sm:inline-flex items-center text-xs font-bold px-4 py-2.5 rounded-full border border-purple-200 text-brand-purple hover:bg-brand-purple hover:text-white transition-colors duration-300">
+          <i class="fa-solid fa-phone mr-1.5"></i> 9990940010
+        </a>
+        <button onclick="toggleCart()" class="relative bg-neutral-900 hover:bg-brand-purple text-white px-5 py-2.5 rounded-full font-bold transition-all shadow-md flex items-center text-sm cursor-pointer transform hover:scale-105 active:scale-95">
+          <i class="fa-solid fa-bag-shopping mr-2"></i>
+          <span>Cart</span>
+          <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-yellow-400 text-neutral-900 font-black text-[10px] w-5 h-5 flex items-center justify-center rounded-full shadow border-2 border-brand-cream hidden">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="relative w-full overflow-hidden bg-white max-w-7xl mx-auto md:mt-6 md:rounded-3xl shadow-xl shadow-brand-purple/5 border border-brand-warm" id="hero-section">
+    <!-- Dynamic Background Accent -->
+    <div id="hero-bg-accent" class="absolute inset-0 opacity-10 transition-colors duration-700 pointer-events-none"></div>
+    
+    <!-- Carousel Track -->
+    <div class="relative w-full h-[550px] md:h-[600px] flex items-center touch-pan-y" id="carousel-track">
+      
+      <!-- Slide Content Wrapper -->
+      <div class="w-full px-4 sm:px-10 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10" id="slide-content">
+        
+        <!-- Text Content (Left/Top) -->
+        <div class="flex flex-col justify-center items-center md:items-start text-center md:text-left order-2 md:order-1 slide-enter" id="slide-text">
+          <span id="slide-tag" class="text-xs font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple border border-brand-purple/20">Special Edition</span>
+          
+          <h1 id="slide-title" class="text-5xl md:text-6xl lg:text-7xl font-black text-neutral-900 leading-none tracking-tighter mb-2 uppercase font-sans">
+            MATCHA
+          </h1>
+          <h2 id="slide-subtitle" class="text-4xl md:text-5xl font-serif italic text-brand-purple mb-4">
+            Strawberry
+          </h2>
+          
+          <div class="flex items-center justify-center md:justify-start space-x-3 mb-6">
+            <span id="slide-price" class="text-3xl font-black text-neutral-900">₹164</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-neutral-300"></span>
+            <span class="text-sm font-semibold text-neutral-500 uppercase tracking-wider">Laxmi Nagar Exclusives</span>
+          </div>
+          
+          <button id="slide-btn" class="bg-brand-purple hover:bg-brand-dark text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-xl shadow-brand-purple/30 transition transform hover:-translate-y-1 active:scale-95 flex items-center space-x-2 cursor-pointer">
+            <span>Add to Order</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+        
+        <!-- Image Content (Right/Bottom) -->
+        <div class="flex justify-center items-center order-1 md:order-2 relative mt-8 md:mt-0 img-enter" id="slide-image-container">
+          <div id="slide-blob" class="absolute w-[280px] h-[280px] md:w-[400px] md:h-[400px] blob-shape transition-colors duration-700 blur-2xl opacity-60"></div>
+          <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] rounded-full flex items-center justify-center p-2 z-10">
+            <img id="slide-image" src="" alt="Beverage" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-white transition-transform duration-500 hover:scale-105" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="absolute bottom-6 left-0 right-0 flex justify-center items-center space-x-6 z-20">
+      <button onclick="prevSlide()" class="w-10 h-10 rounded-full bg-white/80 hover:bg-white text-brand-purple shadow-md flex items-center justify-center backdrop-blur transition cursor-pointer">
+        <i class="fa-solid fa-chevron-left text-sm"></i>
+      </button>
+      <div class="flex space-x-2" id="carousel-dots">
+        <!-- Dots injected via JS -->
+      </div>
+      <button onclick="nextSlide()" class="w-10 h-10 rounded-full bg-white/80 hover:bg-white text-brand-purple shadow-md flex items-center justify-center backdrop-blur transition cursor-pointer">
+        <i class="fa-solid fa-chevron-right text-sm"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="menu" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full flex-1">
+    
+    <div class="text-center md:text-left mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div>
+        <h2 class="text-4xl md:text-5xl font-black text-neutral-900 tracking-tight">Menu <span class="font-serif italic text-brand-purple font-normal">drinks & food</span></h2>
+        <p class="text-neutral-500 text-sm mt-2 font-medium">Freshly brewed and perfectly crafted.</p>
+      </div>
+      
+      <!-- Search -->
+      <div class="relative w-full md:w-72">
+        <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400"></i>
+        <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Find your favorite..." class="w-full bg-white pl-11 pr-4 py-3 rounded-2xl border border-brand-warm focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-shadow shadow-sm font-medium text-sm">
+      </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="relative mb-8">
+      <div class="flex items-center space-x-3 overflow-x-auto pb-4 no-scrollbar scroll-smooth" id="category-filters">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+
+    <!-- Menu Grid -->
+    <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <!-- Menu Cards Rendered via JS -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden flex-col items-center justify-center py-20 bg-white rounded-3xl border border-dashed border-neutral-300">
+      <i class="fa-solid fa-ghost text-5xl text-neutral-200 mb-4"></i>
+      <h3 class="text-lg font-bold text-neutral-700">No items found</h3>
+      <p class="text-neutral-400 text-sm mt-1">Try searching for something else.</p>
+    </div>
+  </main>
+
+  <section id="faq" class="bg-white border-t border-b border-brand-warm/60 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-black text-neutral-900">Frequently Asked Questions</h2>
+        <p class="text-neutral-500 text-sm mt-2">Everything you need to know about ordering.</p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- FAQ 1 -->
+        <div class="border border-brand-warm rounded-2xl overflow-hidden bg-brand-cream/30">
+          <button onclick="toggleFaq('faq-1')" class="w-full px-6 py-4 flex items-center justify-between text-left font-bold text-neutral-800 hover:text-brand-purple transition cursor-pointer">
+            <span>Do you offer home delivery in Laxmi Nagar?</span>
+            <i id="icon-faq-1" class="fa-solid fa-chevron-down text-brand-purple transition-transform"></i>
+          </button>
+          <div id="content-faq-1" class="px-6 pb-4 text-sm text-neutral-600 hidden">
+            Yes, you can place your order directly via WhatsApp through this website, and we will confirm the delivery details and timings instantly.
+          </div>
+        </div>
+        <!-- FAQ 2 -->
+        <div class="border border-brand-warm rounded-2xl overflow-hidden bg-brand-cream/30">
+          <button onclick="toggleFaq('faq-2')" class="w-full px-6 py-4 flex items-center justify-between text-left font-bold text-neutral-800 hover:text-brand-purple transition cursor-pointer">
+            <span>Are your ingredients fresh?</span>
+            <i id="icon-faq-2" class="fa-solid fa-chevron-down text-brand-purple transition-transform"></i>
+          </button>
+          <div id="content-faq-2" class="px-6 pb-4 text-sm text-neutral-600 hidden">
+            Absolutely! Our espresso shots are pulled fresh from premium roasted beans, our burger patties are made to order, and we use top-quality ingredients for every item.
+          </div>
+        </div>
+        <!-- FAQ 3 -->
+        <div class="border border-brand-warm rounded-2xl overflow-hidden bg-brand-cream/30">
+          <button onclick="toggleFaq('faq-3')" class="w-full px-6 py-4 flex items-center justify-between text-left font-bold text-neutral-800 hover:text-brand-purple transition cursor-pointer">
+            <span>How do I customize my coffee or add large sizes?</span>
+            <i id="icon-faq-3" class="fa-solid fa-chevron-down text-brand-purple transition-transform"></i>
+          </button>
+          <div id="content-faq-3" class="px-6 pb-4 text-sm text-neutral-600 hidden">
+            We offer large size upgrades (+₹49) and extra flavors/shots. You can mention these specific customizations in the WhatsApp chat when you send your order!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="bg-brand-dark text-white py-12 border-t-4 border-brand-purple">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+      <div>
+        <h3 class="text-xl font-black mb-4 flex items-center justify-center md:justify-start">
+          <i class="fa-solid fa-mug-hot text-brand-accent mr-2"></i> SAY COFFEE
+        </h3>
+        <p class="text-purple-200 text-sm mb-4">Delighting Your Day with Perfect Coffee and Vibrant Flavors in the heart of Delhi.</p>
+        <div class="flex items-center justify-center md:justify-start space-x-4">
+          <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent transition"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent transition"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-4 text-white">Visit Us</h4>
+        <p class="text-purple-200 text-sm flex items-start justify-center md:justify-start">
+          <i class="fa-solid fa-location-dot mt-1 mr-2 text-brand-accent"></i>
+          Say Coffee<br>Near Laxmi Nagar Metro Station<br>Laxmi Nagar, New Delhi
+        </p>
+      </div>
+      <div>
+        <h4 class="font-bold text-lg mb-4 text-white">Contact & Hours</h4>
+        <p class="text-purple-200 text-sm flex items-center justify-center md:justify-start mb-2">
+          <i class="fa-solid fa-clock mr-2 text-brand-accent"></i> 10:00 AM - 11:00 PM Daily
+        </p>
+        <p class="text-purple-200 text-sm flex items-center justify-center md:justify-start">
+          <i class="fa-brands fa-whatsapp mr-2 text-green-400"></i>
+          <a href="tel:9990940010" class="hover:text-white underline decoration-purple-400 underline-offset-4">9990940010</a>
+        </p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-white/10 text-center text-xs text-purple-300">
+      &copy; 2026 Say Coffee. All Rights Reserved. GST Extra.
+    </div>
+  </footer>
+
+  <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
+  
+  <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white z-50 transform translate-x-full transition-transform duration-400 ease-in-out shadow-2xl flex flex-col">
+    <!-- Cart Header -->
+    <div class="px-6 py-5 border-b border-brand-warm flex items-center justify-between bg-brand-cream">
+      <h2 class="text-xl font-black text-neutral-900 flex items-center">
+        <i class="fa-solid fa-basket-shopping text-brand-purple mr-2"></i> Your Basket
+      </h2>
+      <button onclick="toggleCart()" class="w-8 h-8 rounded-full bg-white border border-neutral-200 flex items-center justify-center text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition cursor-pointer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Cart Items -->
+    <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Cart Footer / Checkout -->
+    <div class="p-6 border-t border-brand-warm bg-white shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.05)]">
+      <div class="flex justify-between items-center mb-2 text-sm font-semibold text-neutral-600">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">₹0</span>
+      </div>
+      <div class="flex justify-between items-center mb-6 text-xs text-neutral-400">
+        <span>Taxes</span>
+        <span>Calculated at store</span>
+      </div>
+      <div class="flex justify-between items-center mb-6">
+        <span class="text-lg font-black text-neutral-900">Total</span>
+        <span id="cart-total" class="text-2xl font-black text-brand-purple">₹0</span>
+      </div>
+      <button onclick="checkoutWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1DA851] text-white py-4 rounded-2xl font-bold text-base shadow-lg shadow-green-500/20 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-2 cursor-pointer">
+        <i class="fa-brands fa-whatsapp text-xl"></i>
+        <span>Order via WhatsApp</span>
+      </button>
+      <p class="text-center text-[10px] text-neutral-400 mt-3 font-medium uppercase tracking-wider">Sends directly to Say Coffee counter</p>
+    </div>
+  </div>
+
+  <script>
+    /* --- DATA: HERO CAROUSEL --- */
+    const heroSlides = [
+      {
+        tag: "Summer Special",
+        titleMain: "MATCHA",
+        titleSub: "Strawberry",
+        price: 164,
+        img: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=800&q=80",
+        colorBlob: "#a7f3d0", // soft green
+        colorBg: "#ecfdf5",
+        itemObj: { id: "h1", name: "Matcha Strawberry", price: 164, veg: true }
+      },
+      {
+        tag: "Classic Blends",
+        titleMain: "ROASTED",
+        titleSub: "Hazelnut Frappe",
+        price: 134,
+        img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80",
+        colorBlob: "#fde68a", // soft amber
+        colorBg: "#fffbeb",
+        itemObj: { id: "h2", name: "Roasted Hazelnut", price: 134, veg: true }
+      },
+      {
+        tag: "Intense Brew",
+        titleMain: "VIETNAMESE",
+        titleSub: "Cold Coffee",
+        price: 148,
+        img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80",
+        colorBlob: "#d8b4fe", // soft purple
+        colorBg: "#faf5ff",
+        itemObj: { id: "h3", name: "Vietnamese Cold Coffee", price: 148, veg: true }
+      }
+    ];
+
+    /* --- DATA: MENU --- */
+    const menuData = [
+      { id: 1, name: "Intense Espresso", price: 99, category: "Hot Coffee", veg: true, desc: "Pure, bold, single pull shot." },
+      { id: 2, name: "Cappuccino", price: 127, category: "Hot Coffee", veg: true, desc: "Rich espresso topped with deep layer of foamed milk." },
+      { id: 3, name: "Cafe Mocha", price: 134, category: "Hot Coffee", veg: true, desc: "Espresso, cocoa, and steamed milk." },
+      
+      { id: 4, name: "Creamy Frappe", price: 120, category: "Cold Coffee", veg: true, desc: "Thick chilled blended coffee sensation." },
+      { id: 5, name: "Iced Latte", price: 148, category: "Cold Coffee", veg: true, desc: "Chilled espresso poured over milk and ice." },
+      
+      { id: 6, name: "Matcha Latte", price: 149, category: "Matcha & Teas", veg: true, desc: "Stone ground fine Japanese green tea." },
+      { id: 7, name: "Matcha Strawberry", price: 164, category: "Matcha & Teas", veg: true, desc: "Fresh strawberry puree layered with matcha." },
+      { id: 8, name: "Lemon Ice Tea", price: 99, category: "Matcha & Teas", veg: true, desc: "Refreshing citrus infused iced tea." },
+      
+      { id: 9, name: "Desi Chai", price: 44, category: "Chai", veg: true, desc: "Authentic home-style brewed tea." },
+      { id: 10, name: "Masala Chai", price: 64, category: "Chai", veg: true, desc: "Spiced aromatic Indian tea." },
+      
+      { id: 11, name: "Say Cheese Fries", price: 129, category: "Fries", veg: true, desc: "Crispy fries drenched in cheese sauce." },
+      { id: 12, name: "Peri Peri Chicken Fries", price: 149, category: "Fries", veg: false, desc: "Spicy chicken bites over crispy fries." },
+      
+      { id: 13, name: "Crispy Aloo Burger", price: 69, category: "Burgers", veg: true, desc: "Spiced potato patty with fresh veggies." },
+      { id: 14, name: "Chicken Peri Peri Burger", price: 139, category: "Burgers", veg: false, desc: "Juicy chicken fillet with fiery seasoning." },
+      { id: 15, name: "Veg Double Decker", price: 139, category: "Burgers", veg: true, desc: "Double the patties, double the fun." },
+      
+      { id: 16, name: "Cheese Margarita", price: 114, category: "Pizza", veg: true, desc: "Classic mozzarella and basil." },
+      { id: 17, name: "BBQ Chicken & Paprika", price: 164, category: "Pizza", veg: false, desc: "Smoky chicken on a crisp crust." },
+      
+      { id: 18, name: "Cheesy Quesadilla", price: 149, category: "Mexican", veg: true, desc: "Folded grilled tortilla with melted cheese." },
+      { id: 19, name: "Chicken Burrito Bowl", price: 229, category: "Mexican", veg: false, desc: "Rice, beans, salsa, and grilled chicken." },
+      
+      { id: 20, name: "Loaded Nachos", price: 149, category: "Snacks", veg: true, desc: "Crisp tortillas with cheese and salsa." },
+      { id: 21, name: "Chicken Strips (5 pcs)", price: 199, category: "Snacks", veg: false, desc: "Golden fried chicken tenders." },
+      
+      { id: 22, name: "Oreo Shake", price: 119, category: "Shakes & Waffles", veg: true, desc: "Thick creamy shake with crushed Oreos." },
+      { id: 23, name: "Nutella Crunch Waffle", price: 149, category: "Shakes & Waffles", veg: true, desc: "Warm Belgian waffle loaded with Nutella." }
+    ];
+
+    /* --- CAROUSEL LOGIC --- */
+    let currentSlide = 0;
+    let slideInterval;
+
+    function renderCarousel() {
+      const slide = heroSlides[currentSlide];
+      
+      const textEl = document.getElementById("slide-text");
+      const imgContainerEl = document.getElementById("slide-image-container");
+      
+      // Remove animation classes
+      textEl.classList.remove("slide-enter-active");
+      imgContainerEl.classList.remove("img-enter-active");
+      
+      // Force reflow
+      void textEl.offsetWidth;
+      void imgContainerEl.offsetWidth;
+
+      // Update content
+      document.getElementById("slide-tag").innerText = slide.tag;
+      document.getElementById("slide-title").innerText = slide.titleMain;
+      document.getElementById("slide-subtitle").innerText = slide.titleSub;
+      document.getElementById("slide-price").innerText = `₹${slide.price}`;
+      document.getElementById("slide-image").src = slide.img;
+      document.getElementById("slide-blob").style.backgroundColor = slide.colorBlob;
+      document.getElementById("hero-bg-accent").style.backgroundColor = slide.colorBg;
+      
+      // Add animation classes
+      textEl.classList.add("slide-enter-active");
+      imgContainerEl.classList.add("img-enter-active");
+
+      // Update button action
+      document.getElementById("slide-btn").onclick = () => addToCart(slide.itemObj);
+
+      // Render dots
+      const dotsHTML = heroSlides.map((_, i) => `
+        <button onclick="goToSlide(${i})" class="h-2 rounded-full transition-all duration-300 ${i === currentSlide ? 'w-8 bg-brand-purple' : 'w-2 bg-neutral-300'} cursor-pointer"></button>
+      `).join('');
+      document.getElementById("carousel-dots").innerHTML = dotsHTML;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % heroSlides.length;
+      renderCarousel();
+      resetInterval();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + heroSlides.length) % heroSlides.length;
+      renderCarousel();
+      resetInterval();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      renderCarousel();
+      resetInterval();
+    }
+
+    function resetInterval() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    // Swipe logic for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const carouselTrack = document.getElementById('carousel-track');
+    
+    carouselTrack.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+    
+    carouselTrack.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) nextSlide();
+      if (touchEndX - touchStartX > 50) prevSlide();
+    }, {passive: true});
+
+    /* --- MENU LOGIC --- */
+    let activeCategory = "All";
+    const categories = ["All", "Hot Coffee", "Cold Coffee", "Matcha & Teas", "Chai", "Fries", "Burgers", "Pizza", "Mexican", "Snacks", "Shakes & Waffles"];
+
+    function renderCategories() {
+      const container = document.getElementById("category-filters");
+      container.innerHTML = categories.map(cat => `
+        <button onclick="setCategory('${cat}')" class="whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-200 cursor-pointer border ${cat === activeCategory ? 'bg-brand-purple text-white border-brand-purple shadow-md shadow-brand-purple/20' : 'bg-white text-neutral-600 border-neutral-200 hover:border-brand-purple/50 hover:text-brand-purple'}">
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      document.getElementById("search-input").value = "";
+      renderCategories();
+      renderMenu();
+    }
+
+    function handleSearch() {
+      activeCategory = "All";
+      renderCategories();
+      renderMenu();
+    }
+
+    function renderMenu() {
+      const query = document.getElementById("search-input").value.toLowerCase();
+      const grid = document.getElementById("menu-grid");
+      const emptyState = document.getElementById("empty-state");
+
+      const filtered = menuData.filter(item => {
+        const matchCat = activeCategory === "All" || item.category === activeCategory;
+        const matchSearch = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+        return matchCat && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        emptyState.classList.add("flex");
+      } else {
+        emptyState.classList.add("hidden");
+        emptyState.classList.remove("flex");
+        
+        grid.innerHTML = filtered.map(item => `
+          <div class="bg-white rounded-3xl p-5 border border-brand-warm/80 hover:border-brand-purple/30 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-full group">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-neutral-50 border ${item.veg ? 'border-emerald-500 text-emerald-500' : 'border-rose-500 text-rose-500'} text-[10px] font-black">
+                  ●
+                </span>
+                <span class="text-[10px] font-black uppercase tracking-wider text-neutral-400 bg-brand-cream px-2.5 py-1 rounded-full">${item.category}</span>
+              </div>
+              <h3 class="font-extrabold text-neutral-900 text-lg group-hover:text-brand-purple transition-colors leading-tight mb-1">${item.name}</h3>
+              <p class="text-xs text-neutral-500 leading-relaxed">${item.desc}</p>
+            </div>
+            <div class="mt-5 pt-4 border-t border-brand-warm flex items-center justify-between">
+              <span class="text-xl font-black text-brand-purple">₹${item.price}</span>
+              <button onclick='addToCart(${JSON.stringify(item)})' class="w-10 h-10 rounded-full bg-brand-cream text-brand-purple hover:bg-brand-purple hover:text-white font-bold transition-colors duration-200 cursor-pointer shadow-sm flex items-center justify-center">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    /* --- CART LOGIC --- */
+    let cart = [];
+
+    function addToCart(item) {
+      const existing = cart.find(i => i.name === item.name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...item, qty: 1 });
+      }
+      renderCart();
+      
+      // Feedback animation on cart icon
+      const badge = document.getElementById("cart-badge");
+      badge.classList.add("scale-150");
+      setTimeout(() => badge.classList.remove("scale-150"), 200);
+    }
+
+    function updateQty(name, delta) {
+      const item = cart.find(i => i.name === name);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.name !== name);
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      const count = cart.reduce((acc, curr) => acc + curr.qty, 0);
+      const total = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
+
+      // Badge
+      const badge = document.getElementById("cart-badge");
+      if (count > 0) {
+        badge.innerText = count;
+        badge.classList.remove("hidden");
+      } else {
+        badge.classList.add("hidden");
+      }
+
+      // Drawer Content
+      const container = document.getElementById("cart-items");
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="flex flex-col items-center justify-center h-full text-neutral-400 space-y-3">
+            <div class="w-20 h-20 bg-brand-cream rounded-full flex items-center justify-center text-3xl text-brand-purple/30">
+              <i class="fa-solid fa-basket-shopping"></i>
+            </div>
+            <p class="font-bold text-neutral-600">Your basket is empty</p>
+            <p class="text-xs">Add some delicious items from the menu.</p>
+            <button onclick="toggleCart()" class="text-brand-purple text-xs font-bold underline mt-2">Browse Menu</button>
+          </div>
+        `;
+      } else {
+        container.innerHTML = cart.map(item => `
+          <div class="bg-white rounded-2xl p-4 border border-brand-warm/80 shadow-sm flex items-center justify-between group">
+            <div class="flex-1 pr-2">
+              <h4 class="font-bold text-sm text-neutral-900 leading-snug">${item.name}</h4>
+              <p class="text-xs text-brand-purple font-semibold mt-0.5">₹${item.price}</p>
+            </div>
+            <div class="flex items-center space-x-3 bg-brand-cream p-1 rounded-xl border border-neutral-200">
+              <button onclick="updateQty('${item.name}', -1)" class="w-7 h-7 rounded-lg bg-white shadow-sm flex items-center justify-center text-neutral-600 hover:text-brand-purple hover:bg-neutral-50 transition cursor-pointer font-black text-sm">
+                -
+              </button>
+              <span class="text-sm font-black text-neutral-900 w-4 text-center">${item.qty}</span>
+              <button onclick="updateQty('${item.name}', 1)" class="w-7 h-7 rounded-lg bg-white shadow-sm flex items-center justify-center text-neutral-600 hover:text-brand-purple hover:bg-neutral-50 transition cursor-pointer font-black text-sm">
+                +
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Totals
+      document.getElementById("cart-subtotal").innerText = `₹${total}`;
+      document.getElementById("cart-total").innerText = `₹${total}`;
+    }
+
+    function toggleCart() {
+      const drawer = document.getElementById("cart-drawer");
+      const overlay = document.getElementById("cart-overlay");
+      const isClosed = drawer.classList.contains("translate-x-full");
+
+      if (isClosed) {
+        drawer.classList.remove("translate-x-full");
+        overlay.classList.remove("hidden");
+        // small delay for opacity transition
+        setTimeout(() => overlay.classList.remove("opacity-0"), 10);
+        document.body.style.overflow = 'hidden'; // prevent bg scroll
+      } else {
+        drawer.classList.add("translate-x-full");
+        overlay.classList.add("opacity-0");
+        setTimeout(() => overlay.classList.add("hidden"), 300);
+        document.body.style.overflow = '';
+      }
+    }
+
+    function checkoutWhatsApp() {
+      if (cart.length === 0) {
+        alert("Please add items to your basket first!");
+        return;
+      }
+
+      let text = `*NEW ORDER - SAY COFFEE (Laxmi Nagar)*%0A------------------------------%0A`;
+      let grandTotal = 0;
+
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        grandTotal += itemTotal;
+        text += `• ${item.qty}x ${item.name} - ₹${itemTotal}%0A`;
+      });
+
+      text += `------------------------------%0A*Total Bill: ₹${grandTotal}*%0A*(GST extra at store)*%0A%0AHello, I would like to place this order!`;
+
+      const storePhone = "919990940010";
+      window.open(`https://wa.me/${storePhone}?text=${text}`, "_blank");
+    }
+
+    /* --- FAQ LOGIC --- */
+    function toggleFaq(id) {
+      const content = document.getElementById(`content-${id}`);
+      const icon = document.getElementById(`icon-${id}`);
+      
+      if (content.classList.contains("hidden")) {
+        content.classList.remove("hidden");
+        icon.classList.add("rotate-180");
+      } else {
+        content.classList.add("hidden");
+        icon.classList.remove("rotate-180");
+      }
+    }
+
+    /* --- INITIALIZATION --- */
+    window.addEventListener("DOMContentLoaded", () => {
+      renderCarousel();
+      resetInterval();
+      renderCategories();
+      renderMenu();
+      renderCart();
+    });
+  </script>
+</body>
+</html>
